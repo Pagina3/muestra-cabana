@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cabañas & Tinajas Alto Valle | Descanso en La Ligua & Alrededores</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Cabañas & Tinajas Alto Valle | Descanso Natural en La Ligua & Alrededores</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -11,10 +11,15 @@
             theme: {
                 extend: {
                     colors: {
-                        brand: '#166534',
-                        brandDark: '#14532d',
-                        warm: '#fbf9f5',
-                        wood: '#854d0e',
+                        forest: {
+                            50: '#f2f8f4',
+                            100: '#e1efe6',
+                            500: '#2d6a4f',
+                            600: '#1b4332',
+                            700: '#081c15',
+                            800: '#04100c'
+                        },
+                        amberWood: '#d97706',
                     }
                 }
             }
@@ -25,348 +30,449 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent; }
         .font-serif { font-family: 'Playfair Display', serif; }
+        .hide-scroll::-webkit-scrollbar { display: none; }
+        .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
-<body class="bg-stone-50 text-stone-800 antialiased pb-20 md:pb-10">
+<body class="bg-stone-50 text-stone-800 antialiased pb-20 md:pb-10 selection:bg-forest-600 selection:text-white">
 
-    <!-- WATERMARK DEMO BANNER -->
-    <div class="bg-emerald-900 text-white text-xs sm:text-sm font-semibold py-2 px-4 text-center sticky top-0 z-50 shadow-md flex items-center justify-center gap-2 border-b border-emerald-700">
-        <i class="fa-solid fa-sparkles text-emerald-300"></i>
-        <span><strong>MAQUETA EN VIVO:</strong> Ejemplo de página web para Cabañas y Alojamientos con Tinajas en La Ligua, Valle Hermoso y Papudo.</span>
+    <!-- DEMO WATERMARK BANNER -->
+    <div class="bg-forest-700 text-stone-200 text-[11px] sm:text-xs font-semibold py-2 px-3 text-center sticky top-0 z-50 shadow-md flex items-center justify-center gap-2 border-b border-forest-600/60">
+        <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span><strong>MAQUETA EN VIVO:</strong> Ejemplo de página web para cabañas con tinajas en La Ligua y alrededores. Personalizable con sus fotos y tarifas.</span>
     </div>
 
-    <!-- NAVBAR -->
-    <header class="bg-white/95 backdrop-blur-md border-b border-stone-200 sticky top-9 z-40">
-        <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-xl bg-emerald-800 text-white flex items-center justify-center text-xl font-bold shadow-sm">
+    <!-- NAVBAR MOBILE-OPTIMIZED -->
+    <header class="bg-white/95 backdrop-blur-md border-b border-stone-200/80 sticky top-8 z-40">
+        <div class="max-w-6xl mx-auto px-4 py-2.5 flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+                <div class="w-9 h-9 rounded-xl bg-forest-600 text-white flex items-center justify-center text-lg shadow-sm">
                     <i class="fa-solid fa-tree"></i>
                 </div>
                 <div>
-                    <h1 class="text-lg font-bold text-stone-900 leading-tight">Cabañas Alto Valle</h1>
-                    <p class="text-xs text-stone-500">Valle Hermoso • La Ligua • A 20 min de Papudo</p>
+                    <h1 class="text-sm sm:text-base font-extrabold text-stone-900 leading-tight">Cabañas Alto Valle</h1>
+                    <p class="text-[10px] text-stone-500 flex items-center gap-1 font-medium">
+                        <i class="fa-solid fa-location-dot text-emerald-600"></i> La Ligua • Valle Hermoso
+                    </p>
                 </div>
             </div>
 
-            <div class="flex items-center gap-3">
-                <a href="#cabanas" class="hidden sm:inline-flex items-center gap-2 text-sm font-semibold text-stone-700 hover:text-emerald-800 transition">
-                    Cabañas
+            <div class="flex items-center gap-2">
+                <a href="#cabanas" class="hidden md:inline-flex text-xs font-bold text-stone-600 hover:text-forest-600 px-3 py-1.5 transition">
+                    Nuestras Cabañas
                 </a>
-                <a href="#tinajas" class="hidden sm:inline-flex items-center gap-2 text-sm font-semibold text-stone-700 hover:text-emerald-800 transition">
-                    Tinajas Calientes
+                <a href="#tinajas" class="hidden md:inline-flex text-xs font-bold text-stone-600 hover:text-forest-600 px-3 py-1.5 transition">
+                    Tinajas a Leña
                 </a>
-                <a href="#cotizador" class="bg-emerald-700 hover:bg-emerald-800 text-white px-4 py-2 rounded-full font-semibold text-xs sm:text-sm flex items-center gap-2 transition shadow-sm">
-                    <i class="fa-solid fa-calendar-check"></i>
+                <a href="#cotizador" class="bg-forest-600 hover:bg-forest-700 active:scale-95 text-white px-3.5 py-2 rounded-full font-bold text-xs flex items-center gap-1.5 shadow-sm transition">
+                    <i class="fa-brands fa-whatsapp text-sm text-emerald-300"></i>
                     <span>Consultar Fechas</span>
                 </a>
             </div>
         </div>
     </header>
 
-    <!-- HERO SECTION -->
-    <section class="relative bg-stone-900 text-white min-h-[520px] flex items-center justify-center">
-        <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1600&q=80" 
-             alt="Cabañas rústicas con naturaleza" 
-             class="absolute inset-0 w-full h-full object-cover opacity-45">
-        <div class="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-900/50 to-transparent"></div>
+    <!-- HERO SECTION: AUTÉNTICA CABAÑA DE MADERA ILUMINADA EN LA NATURALEZA -->
+    <section class="relative bg-stone-950 text-white min-h-[500px] sm:min-h-[560px] flex items-center justify-center overflow-hidden">
+        <!-- Foto de cabaña de madera rústica real al atardecer -->
+        <img src="https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=1600&q=80" 
+             alt="Cabaña de madera rústica en el bosque" 
+             class="absolute inset-0 w-full h-full object-cover object-center opacity-40 scale-105">
+        <div class="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/60 to-transparent"></div>
 
-        <div class="relative max-w-4xl mx-auto px-4 py-16 text-center">
-            <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-700/40 border border-emerald-500/50 text-emerald-300 text-xs sm:text-sm font-semibold mb-4 backdrop-blur-sm">
-                <i class="fa-solid fa-hot-tub-person"></i> Tinajas de Agua Caliente bajo las estrellas
+        <div class="relative max-w-3xl mx-auto px-4 py-16 text-center">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/30 text-emerald-300 text-[11px] sm:text-xs font-bold mb-4 backdrop-blur-md">
+                <i class="fa-solid fa-hot-tub-person"></i> Cabañas Rústicas & Tinajas de Madera a Leña
             </span>
-            <h2 class="text-3xl sm:text-5xl font-serif font-bold text-white mb-4 leading-tight">
-                Desconéctate en el Valle. <br class="hidden sm:inline">Naturaleza, tinajas y tranquilidad.
+            
+            <h2 class="text-3xl sm:text-5xl font-serif font-bold text-white mb-3.5 leading-tight tracking-tight">
+                Desconéctate en el Valle. <br class="hidden sm:inline">
+                <span class="italic text-emerald-200">Tranquilidad, madera y descanso.</span>
             </h2>
-            <p class="text-stone-200 text-sm sm:text-base max-w-2xl mx-auto mb-8">
-                Cabañas equipadas para parejas y familias en un entorno campestre privilegiado. Reserva directa sin pagar el 20% de comisión de plataformas.
+            
+            <p class="text-stone-300 text-xs sm:text-sm max-w-xl mx-auto mb-7 leading-relaxed">
+                Cabañas 100% equipadas rodeadas de naturaleza en Valle Hermoso. A solo 20 min de Papudo. Reserva directa sin pagar comisiones a Booking o Airbnb.
             </p>
 
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
-                <a href="#cotizador" class="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-7 py-3.5 rounded-full shadow-lg transition flex items-center justify-center gap-2 text-sm sm:text-base">
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-2.5 max-w-md mx-auto">
+                <a href="#cotizador" class="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white font-bold px-6 py-3.5 rounded-2xl shadow-lg transition flex items-center justify-center gap-2 text-xs sm:text-sm">
                     <i class="fa-brands fa-whatsapp text-lg"></i> Cotizar Estadía por WhatsApp
                 </a>
-                <a href="#cabanas" class="w-full sm:w-auto bg-stone-800/80 hover:bg-stone-700 border border-stone-600 text-white font-semibold px-6 py-3.5 rounded-full backdrop-blur-sm transition flex items-center justify-center gap-2 text-sm sm:text-base">
-                    <i class="fa-solid fa-house"></i> Ver Tipos de Cabaña
+                <a href="#cabanas" class="w-full sm:w-auto bg-stone-900/80 hover:bg-stone-800 border border-stone-700 text-stone-200 font-semibold px-5 py-3.5 rounded-2xl backdrop-blur-sm transition flex items-center justify-center gap-2 text-xs sm:text-sm">
+                    <i class="fa-solid fa-house-chimney-window"></i> Ver las 3 Cabañas
                 </a>
             </div>
 
-            <!-- TRUST BADGES -->
-            <div class="mt-10 flex flex-wrap justify-center items-center gap-4 sm:gap-8 text-xs text-stone-300">
-                <div class="flex items-center gap-1.5"><i class="fa-solid fa-shield-heart text-emerald-400"></i> Reserva 100% Segura</div>
-                <div class="flex items-center gap-1.5"><i class="fa-solid fa-paw text-emerald-400"></i> Aceptamos Mascotas (Pet Friendly)</div>
+            <!-- SOCIAL PROOF PILLS -->
+            <div class="mt-8 pt-6 border-t border-stone-800/80 flex flex-wrap justify-center items-center gap-3 sm:gap-6 text-[11px] text-stone-300">
+                <div class="flex items-center gap-1"><i class="fa-solid fa-star text-amber-400"></i> <strong class="text-white">4.9</strong> en Google (140+ reseñas)</div>
+                <span class="text-stone-600 hidden sm:inline">•</span>
+                <div class="flex items-center gap-1.5"><i class="fa-solid fa-paw text-emerald-400"></i> Pet Friendly (Aceptamos mascotas)</div>
+                <span class="text-stone-600 hidden sm:inline">•</span>
                 <div class="flex items-center gap-1.5"><i class="fa-solid fa-wifi text-emerald-400"></i> Wifi Starlink Alta Velocidad</div>
-                <div class="flex items-center gap-1.5"><i class="fa-solid fa-star text-amber-400"></i> 4.9 estrellas (Google Maps)</div>
             </div>
         </div>
     </section>
 
-    <!-- COTIZADOR RÁPIDO INTERACTIVO -->
-    <section id="cotizador" class="max-w-5xl mx-auto px-4 -mt-10 relative z-20">
-        <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-2xl border border-stone-200">
-            <div class="text-center sm:text-left mb-6">
-                <h3 class="text-lg sm:text-xl font-bold font-serif text-stone-900">
-                    <i class="fa-solid fa-calculator text-emerald-700 me-2"></i>Cotizador de Estadía Express
-                </h3>
-                <p class="text-xs text-stone-500">Selecciona tus fechas y número de huéspedes para consultar disponibilidad inmediata.</p>
+    <!-- COTIZADOR EXPRESS INTERACTIVO (PERFECTO PARA MÓVILES) -->
+    <section id="cotizador" class="max-w-4xl mx-auto px-3.5 -mt-8 relative z-20">
+        <div class="bg-white rounded-3xl p-5 sm:p-7 shadow-2xl border border-stone-200/90">
+            <div class="flex items-center justify-between pb-3 mb-4 border-b border-stone-100">
+                <div>
+                    <h3 class="text-sm sm:text-base font-bold text-stone-900 flex items-center gap-1.5">
+                        <i class="fa-solid fa-calendar-days text-forest-600"></i> Consultar Disponibilidad
+                    </h3>
+                    <p class="text-[11px] text-stone-500 mt-0.5">Te responderemos de inmediato con la confirmación a tu WhatsApp.</p>
+                </div>
+                <span class="bg-emerald-50 text-emerald-700 text-[10px] font-bold px-2.5 py-1 rounded-full border border-emerald-200">
+                    Reserva Directa
+                </span>
             </div>
 
-            <form onsubmit="calcularYEnviar(event)" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-end">
+            <form onsubmit="cotizarPorWhatsApp(event)" class="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <div>
-                    <label class="block text-xs font-bold text-stone-700 mb-1">Cabaña o Plan</label>
-                    <select id="cotiz-tipo" class="w-full bg-stone-50 border border-stone-300 rounded-xl px-3 py-2.5 text-xs sm:text-sm text-stone-800 focus:outline-none focus:border-emerald-600 font-medium">
-                        <option value="Cabaña Romántica con Tinaja (2 personas) - $65.000/noche">Romántica + Tinaja (2 pers)</option>
-                        <option value="Cabaña Familiar El Roble (4 a 6 personas) - $85.000/noche" selected>Familiar El Roble (4-6 pers)</option>
-                        <option value="Cabaña Grande Valle Hermoso (Hasta 8 personas) - $110.000/noche">Grande Valle (Hasta 8 pers)</option>
+                    <label class="block text-[11px] font-bold text-stone-700 mb-1">Elige tu Cabaña</label>
+                    <select id="cotiz-cabana" class="w-full bg-stone-50 border border-stone-300 rounded-xl px-3 py-2.5 text-xs text-stone-800 font-medium focus:outline-none focus:border-forest-600">
+                        <option value="Cabaña Parejas A-Frame (con Tinaja de Madera) - $65.000/noche">Cabaña Parejas A-Frame + Tinaja ($65.000)</option>
+                        <option value="Cabaña Familiar El Roble (4 a 6 personas) - $85.000/noche" selected>Cabaña Familiar El Roble ($85.000)</option>
+                        <option value="Lodge de Troncos Los Aromos (Hasta 8 personas) - $110.000/noche">Lodge Troncos Los Aromos ($110.000)</option>
                     </select>
                 </div>
+
                 <div>
-                    <label class="block text-xs font-bold text-stone-700 mb-1">Fecha de Llegada (Check-in)</label>
-                    <input type="date" id="cotiz-checkin" required class="w-full bg-stone-50 border border-stone-300 rounded-xl px-3 py-2.5 text-xs sm:text-sm text-stone-800 focus:outline-none focus:border-emerald-600">
+                    <label class="block text-[11px] font-bold text-stone-700 mb-1">Fecha de Llegada (Check-in)</label>
+                    <input type="date" id="cotiz-fecha" required class="w-full bg-stone-50 border border-stone-300 rounded-xl px-3 py-2 text-xs text-stone-800 font-medium focus:outline-none focus:border-forest-600">
                 </div>
+
                 <div>
-                    <label class="block text-xs font-bold text-stone-700 mb-1">Noches de Estadía</label>
-                    <select id="cotiz-noches" class="w-full bg-stone-50 border border-stone-300 rounded-xl px-3 py-2.5 text-xs sm:text-sm text-stone-800 focus:outline-none focus:border-emerald-600 font-medium">
+                    <label class="block text-[11px] font-bold text-stone-700 mb-1">Noches de Estadía</label>
+                    <select id="cotiz-noches" class="w-full bg-stone-50 border border-stone-300 rounded-xl px-3 py-2.5 text-xs text-stone-800 font-medium focus:outline-none focus:border-forest-600">
                         <option value="1 noche">1 Noche (Día de semana)</option>
-                        <option value="2 noches (Fin de semana completo)" selected>2 Noches (Viernes a Domingo)</option>
-                        <option value="3 noches">3 Noches (Fin de semana largo)</option>
-                        <option value="5 noches">5 Noches (Vacaciones)</option>
-                        <option value="7 noches o más">1 Semana completa</option>
+                        <option value="2 noches (Fin de semana)" selected>2 Noches (Viernes a Domingo)</option>
+                        <option value="3 noches (Fin de semana largo)">3 Noches (Finde largo)</option>
+                        <option value="5 noches o más">5 Noches o más (Vacaciones)</option>
                     </select>
                 </div>
-                <div>
-                    <button type="submit" class="w-full bg-emerald-700 hover:bg-emerald-800 text-white font-bold py-2.5 px-4 rounded-xl text-xs sm:text-sm shadow transition flex items-center justify-center gap-2">
-                        <i class="fa-brands fa-whatsapp text-base"></i> Consultar Fechas
+
+                <div class="sm:col-span-3 mt-1">
+                    <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 active:scale-[0.98] text-white font-bold py-3 px-4 rounded-xl text-xs sm:text-sm shadow-md transition flex items-center justify-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-base"></i> Abrir Consulta en WhatsApp con Fechas Listas
                     </button>
+                    <p class="text-[10px] text-stone-400 text-center mt-1.5">Sin tarjeta requerida para cotizar • Consulta rápida sin compromiso</p>
                 </div>
             </form>
         </div>
     </section>
 
-    <!-- TIPOS DE CABAÑA -->
-    <section id="cabanas" class="max-w-6xl mx-auto px-4 py-16">
-        <div class="text-center mb-12">
-            <span class="text-xs uppercase tracking-widest font-bold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full">
-                Nuestras Cabañas
+    <!-- SECCIÓN CABAÑAS: FOTOS REALES DE CABAÑAS DE MADERA -->
+    <section id="cabanas" class="max-w-6xl mx-auto px-4 py-14">
+        <div class="text-center mb-10">
+            <span class="text-[10px] uppercase tracking-widest font-extrabold text-forest-600 bg-emerald-100/60 px-3 py-1 rounded-full">
+                Alojamientos 100% Rústicos
             </span>
-            <h2 class="text-2xl sm:text-4xl font-serif font-bold text-stone-900 mt-2">Equipadas para tu descanso</h2>
-            <p class="text-stone-600 text-xs sm:text-sm max-w-xl mx-auto mt-1">
-                Todas nuestras cabañas cuentan con cocina americana equipada, quincho propio con parrilla, smart TV y terraza privada.
+            <h2 class="text-2xl sm:text-4xl font-serif font-bold text-stone-900 mt-2">Nuestras 3 Cabañas de Madera</h2>
+            <p class="text-stone-500 text-xs sm:text-sm max-w-lg mx-auto mt-1">
+                Construidas en madera y vigas a la vista. Totalmente independientes, con terraza privada, quincho y estacionamiento cerrado.
             </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <!-- Cabaña 1 -->
-            <div class="bg-white rounded-3xl overflow-hidden border border-stone-200 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+
+            <!-- CABAÑA 1: A-FRAME WOOD CABIN -->
+            <div class="bg-white rounded-3xl overflow-hidden border border-stone-200/90 shadow-sm hover:shadow-md transition flex flex-col justify-between">
                 <div>
-                    <div class="relative h-56 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1587061949409-02df41d5e562?auto=format&fit=crop&w=700&q=80" alt="Cabaña Romántica" class="w-full h-full object-cover hover:scale-105 transition duration-500">
-                        <span class="absolute top-3 right-3 bg-emerald-800 text-white text-[11px] font-bold px-3 py-1 rounded-full shadow">
+                    <div class="relative h-56 sm:h-60 overflow-hidden">
+                        <!-- Auténtica Cabaña A-Frame de madera -->
+                        <img src="https://images.unsplash.com/photo-1587061949409-02df41d5e562?auto=format&fit=crop&w=800&q=80" 
+                             alt="Cabaña de madera A-Frame para parejas" 
+                             class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                        <span class="absolute top-3 left-3 bg-amber-600 text-white text-[10px] font-black uppercase px-2.5 py-0.5 rounded-full shadow">
                             Incluye Tinaja Privada
                         </span>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex justify-between items-baseline mb-2">
-                            <h3 class="font-bold font-serif text-stone-900 text-lg">Suite Romántica Rústica</h3>
-                            <span class="text-emerald-800 font-extrabold text-lg">$65.000<span class="text-xs font-normal text-stone-500">/noche</span></span>
-                        </div>
-                        <p class="text-xs text-stone-600 leading-relaxed mb-4">
-                            Ideal para escapadas de parejas. Cama King matrimonial, chimenea eléctrica, baño en suite y tinaja de madera caliente exclusiva en la terraza.
-                        </p>
-                        <ul class="text-xs text-stone-600 space-y-2 mb-6">
-                            <li><i class="fa-solid fa-user-group text-emerald-700 w-5"></i> Hasta 2 personas</li>
-                            <li><i class="fa-solid fa-hot-tub-person text-emerald-700 w-5"></i> Tinaja privada a leña ilimitada</li>
-                            <li><i class="fa-solid fa-wine-glass text-emerald-700 w-5"></i> Botella de vino del valle de cortesía</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="p-6 pt-0">
-                    <a href="https://api.whatsapp.com/send?phone=56993262121&text=Hola!%20Me%20interesa%20la%20Suite%20Rom%C3%A1ntica%20con%20Tinaja.%20%C2%BFTienen%20disponibilidad?" target="_blank" 
-                       class="w-full bg-stone-100 hover:bg-emerald-700 hover:text-white text-stone-800 font-bold py-2.5 px-4 rounded-xl text-xs flex items-center justify-center gap-2 transition">
-                        <i class="fa-brands fa-whatsapp"></i> Reservar Suite Parejas
-                    </a>
-                </div>
-            </div>
-
-            <!-- Cabaña 2 -->
-            <div class="bg-white rounded-3xl overflow-hidden border border-emerald-300 ring-2 ring-emerald-600/20 shadow-md flex flex-col justify-between">
-                <div>
-                    <div class="relative h-56 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=700&q=80" alt="Cabaña Familiar El Roble" class="w-full h-full object-cover hover:scale-105 transition duration-500">
-                        <span class="absolute top-3 left-3 bg-amber-500 text-stone-900 text-[11px] font-black uppercase px-2.5 py-0.5 rounded shadow">
-                            Más Popular
+                        <span class="absolute bottom-3 right-3 bg-stone-950/80 backdrop-blur-sm text-white text-[11px] font-bold px-2 py-0.5 rounded-md">
+                            2 a 4 Personas
                         </span>
                     </div>
-                    <div class="p-6">
+
+                    <div class="p-5">
                         <div class="flex justify-between items-baseline mb-2">
-                            <h3 class="font-bold font-serif text-stone-900 text-lg">Cabaña Familiar El Roble</h3>
-                            <span class="text-emerald-800 font-extrabold text-lg">$85.000<span class="text-xs font-normal text-stone-500">/noche</span></span>
+                            <h3 class="font-serif font-bold text-stone-900 text-lg">Cabaña A-Frame Parejas</h3>
+                            <span class="text-forest-600 font-extrabold text-lg">$65.000<span class="text-xs font-normal text-stone-400">/noche</span></span>
                         </div>
-                        <p class="text-xs text-stone-600 leading-relaxed mb-4">
-                            2 dormitorios independientes, living-comedor amplio, cocina completa con refrigerador grande y quincho techado para asados.
+                        <p class="text-xs text-stone-500 leading-relaxed mb-4">
+                            Diseño alpino en madera nativa. Cuenta con cama King en altillo, chimenea, baño privado y tinaja de madera caliente exclusiva en la terraza.
                         </p>
-                        <ul class="text-xs text-stone-600 space-y-2 mb-6">
-                            <li><i class="fa-solid fa-user-group text-emerald-700 w-5"></i> 4 a 6 personas cómodas</li>
-                            <li><i class="fa-solid fa-kitchen-set text-emerald-700 w-5"></i> Cocina full equipada y vajilla</li>
-                            <li><i class="fa-solid fa-fire text-emerald-700 w-5"></i> Quincho techado individual</li>
-                        </ul>
+
+                        <div class="space-y-1.5 text-xs text-stone-600 mb-5 bg-stone-50 p-3 rounded-2xl border border-stone-100">
+                            <div class="flex items-center gap-2"><i class="fa-solid fa-hot-tub-person text-emerald-600 w-4"></i> <strong>Tinaja de ciprés a leña</strong> en terraza privada</div>
+                            <div class="flex items-center gap-2"><i class="fa-solid fa-fire text-emerald-600 w-4"></i> Estufa a leña para tardes frías</div>
+                            <div class="flex items-center gap-2"><i class="fa-solid fa-kitchen-set text-emerald-600 w-4"></i> Cocinilla equipada, frigobar y hervidor</div>
+                        </div>
                     </div>
                 </div>
-                <div class="p-6 pt-0">
-                    <a href="https://api.whatsapp.com/send?phone=56993262121&text=Hola!%20Me%20interesa%20la%20Caba%C3%B1a%20Familiar%20El%20Roble.%20%C2%BFTienen%20disponibilidad?" target="_blank" 
-                       class="w-full bg-emerald-700 hover:bg-emerald-800 text-white font-bold py-2.5 px-4 rounded-xl text-xs flex items-center justify-center gap-2 transition shadow">
-                        <i class="fa-brands fa-whatsapp"></i> Reservar Cabaña Familiar
+
+                <div class="p-5 pt-0">
+                    <a href="https://api.whatsapp.com/send?phone=56993262121&text=Hola!%20Quisiera%20consultar%20disponibilidad%20para%20la%20Caba%C3%B1a%20A-Frame%20con%20Tinaja." target="_blank" 
+                       class="w-full bg-forest-600 hover:bg-forest-700 active:scale-95 text-white font-bold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center gap-2 shadow-sm transition">
+                        <i class="fa-brands fa-whatsapp text-sm"></i> Reservar Cabaña A-Frame
                     </a>
                 </div>
             </div>
 
-            <!-- Cabaña 3 -->
-            <div class="bg-white rounded-3xl overflow-hidden border border-stone-200 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+            <!-- CABAÑA 2: CABAÑA RÚSTICA FAMILIAR -->
+            <div class="bg-white rounded-3xl overflow-hidden border-2 border-emerald-500/30 shadow-md flex flex-col justify-between relative">
+                <div class="absolute top-0 inset-x-0 bg-emerald-600 text-white text-[10px] font-bold text-center py-0.5 tracking-wider uppercase z-10">
+                    La más reservada por familias
+                </div>
                 <div>
-                    <div class="relative h-56 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=700&q=80" alt="Cabaña Gran Valle" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                    <div class="relative h-56 sm:h-60 overflow-hidden pt-5">
+                        <!-- Cabaña rústica familiar de 2 niveles entre árboles -->
+                        <img src="https://images.unsplash.com/photo-1542718610-a1d656d1884c?auto=format&fit=crop&w=800&q=80" 
+                             alt="Cabaña de madera rústica familiar en el campo" 
+                             class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                        <span class="absolute bottom-3 right-3 bg-stone-950/80 backdrop-blur-sm text-white text-[11px] font-bold px-2 py-0.5 rounded-md">
+                            4 a 6 Personas
+                        </span>
                     </div>
-                    <div class="p-6">
+
+                    <div class="p-5">
                         <div class="flex justify-between items-baseline mb-2">
-                            <h3 class="font-bold font-serif text-stone-900 text-lg">Cabaña Gran Valle</h3>
-                            <span class="text-emerald-800 font-extrabold text-lg">$110.000<span class="text-xs font-normal text-stone-500">/noche</span></span>
+                            <h3 class="font-serif font-bold text-stone-900 text-lg">Cabaña Familiar El Roble</h3>
+                            <span class="text-forest-600 font-extrabold text-lg">$85.000<span class="text-xs font-normal text-stone-400">/noche</span></span>
                         </div>
-                        <p class="text-xs text-stone-600 leading-relaxed mb-4">
-                            Ideal para grupos grandes o dos familias que viajan juntas. 3 dormitorios, 2 baños completos y terraza con vista panorámica hacia los cerros.
+                        <p class="text-xs text-stone-500 leading-relaxed mb-4">
+                            2 dormitorios independientes, living-comedor amplio, cocina completa con refrigerador grande y quincho privado techado con parrilla.
                         </p>
-                        <ul class="text-xs text-stone-600 space-y-2 mb-6">
-                            <li><i class="fa-solid fa-user-group text-emerald-700 w-5"></i> Hasta 8 personas</li>
-                            <li><i class="fa-solid fa-bath text-emerald-700 w-5"></i> 2 Baños completos con agua caliente</li>
-                            <li><i class="fa-solid fa-car text-emerald-700 w-5"></i> Estacionamiento cerrado para 3 autos</li>
-                        </ul>
+
+                        <div class="space-y-1.5 text-xs text-stone-600 mb-5 bg-stone-50 p-3 rounded-2xl border border-stone-100">
+                            <div class="flex items-center gap-2"><i class="fa-solid fa-bed text-emerald-600 w-4"></i> 1 Cama Matrimonial + 2 Literas (camarotes)</div>
+                            <div class="flex items-center gap-2"><i class="fa-solid fa-utensils text-emerald-600 w-4"></i> Quincho propio techado con asador</div>
+                            <div class="flex items-center gap-2"><i class="fa-solid fa-tv text-emerald-600 w-4"></i> Smart TV con Netflix + Wifi Starlink</div>
+                        </div>
                     </div>
                 </div>
-                <div class="p-6 pt-0">
-                    <a href="https://api.whatsapp.com/send?phone=56993262121&text=Hola!%20Me%20interesa%20la%20Caba%C3%B1a%20Gran%20Valle%20(8%20personas).%20%C2%BFTienen%20fechas%20libres?" target="_blank" 
-                       class="w-full bg-stone-100 hover:bg-emerald-700 hover:text-white text-stone-800 font-bold py-2.5 px-4 rounded-xl text-xs flex items-center justify-center gap-2 transition">
-                        <i class="fa-brands fa-whatsapp"></i> Reservar Gran Valle
+
+                <div class="p-5 pt-0">
+                    <a href="https://api.whatsapp.com/send?phone=56993262121&text=Hola!%20Quisiera%20consultar%20disponibilidad%20para%20la%20Caba%C3%B1a%20Familiar%20El%20Roble." target="_blank" 
+                       class="w-full bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white font-bold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center gap-2 shadow transition">
+                        <i class="fa-brands fa-whatsapp text-sm"></i> Reservar Cabaña Familiar
                     </a>
                 </div>
             </div>
+
+            <!-- CABAÑA 3: LOG CABIN (CABAÑA DE TRONCOS) -->
+            <div class="bg-white rounded-3xl overflow-hidden border border-stone-200/90 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                <div>
+                    <div class="relative h-56 sm:h-60 overflow-hidden">
+                        <!-- Auténtica Cabaña de troncos rústica -->
+                        <img src="https://images.unsplash.com/photo-1449158743715-0a90ebb6d2d8?auto=format&fit=crop&w=800&q=80" 
+                             alt="Cabaña grande de troncos de madera" 
+                             class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                        <span class="absolute top-3 left-3 bg-forest-600 text-white text-[10px] font-black uppercase px-2.5 py-0.5 rounded-full shadow">
+                            Grupos Grandes
+                        </span>
+                        <span class="absolute bottom-3 right-3 bg-stone-950/80 backdrop-blur-sm text-white text-[11px] font-bold px-2 py-0.5 rounded-md">
+                            Hasta 8 Personas
+                        </span>
+                    </div>
+
+                    <div class="p-5">
+                        <div class="flex justify-between items-baseline mb-2">
+                            <h3 class="font-serif font-bold text-stone-900 text-lg">Lodge Troncos Los Aromos</h3>
+                            <span class="text-forest-600 font-extrabold text-lg">$110.000<span class="text-xs font-normal text-stone-400">/noche</span></span>
+                        </div>
+                        <p class="text-xs text-stone-500 leading-relaxed mb-4">
+                            Construida íntegramente en troncos de madera. Ideal para dos familias que viajan juntas o grupos de amigos. 3 dormitorios y 2 baños completos.
+                        </p>
+
+                        <div class="space-y-1.5 text-xs text-stone-600 mb-5 bg-stone-50 p-3 rounded-2xl border border-stone-100">
+                            <div class="flex items-center gap-2"><i class="fa-solid fa-users text-emerald-600 w-4"></i> Capacidad holgada hasta 8 huéspedes</div>
+                            <div class="flex items-center gap-2"><i class="fa-solid fa-bath text-emerald-600 w-4"></i> 2 Baños completos con agua caliente continua</div>
+                            <div class="flex items-center gap-2"><i class="fa-solid fa-car text-emerald-600 w-4"></i> Estacionamiento cerrado para 3 vehículos</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-5 pt-0">
+                    <a href="https://api.whatsapp.com/send?phone=56993262121&text=Hola!%20Quisiera%20consultar%20por%20el%20Lodge%20de%20Troncos%20Los%20Aromos%20(8%20personas)." target="_blank" 
+                       class="w-full bg-forest-600 hover:bg-forest-700 active:scale-95 text-white font-bold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center gap-2 shadow-sm transition">
+                        <i class="fa-brands fa-whatsapp text-sm"></i> Reservar Lodge de Troncos
+                    </a>
+                </div>
+            </div>
+
         </div>
     </section>
 
-    <!-- SECCIÓN TINAJAS -->
-    <section id="tinajas" class="bg-stone-900 text-white py-16">
+    <!-- SECCIÓN TINAJAS CALIENTES A LEÑA (EXPERIENCIA DESTACADA) -->
+    <section id="tinajas" class="bg-stone-900 text-white py-14">
         <div class="max-w-6xl mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                 <div>
-                    <span class="text-xs uppercase tracking-widest font-bold text-amber-400 bg-amber-400/10 border border-amber-400/20 px-3 py-1 rounded-full">
-                        Experiencia Exclusiva
+                    <span class="text-[10px] uppercase tracking-widest font-bold text-amber-400 bg-amber-400/10 border border-amber-400/20 px-3 py-1 rounded-full">
+                        Experiencia al Aire Libre
                     </span>
-                    <h2 class="text-3xl sm:text-4xl font-serif font-bold text-white mt-3 leading-tight">
+                    <h2 class="text-2xl sm:text-4xl font-serif font-bold text-white mt-3 leading-tight">
                         Tinajas de agua caliente a leña bajo las estrellas
                     </h2>
-                    <p class="text-stone-300 text-xs sm:text-sm mt-4 leading-relaxed">
-                        El cielo despejado del Valle de La Ligua ofrece noches estrelladas inigualables. Nuestras tinajas de ciprés se calientan con leña natural hasta los 38°C para una experiencia de relajo absoluto.
+                    <p class="text-stone-300 text-xs sm:text-sm mt-3.5 leading-relaxed">
+                        El cielo despejado del Valle de La Ligua permite ver miles de estrellas mientras disfrutas de un baño a 38°C en nuestras tinajas de ciprés calentadas con leña natural.
                     </p>
-                    <div class="mt-6 space-y-3 text-xs sm:text-sm">
-                        <div class="flex items-center gap-3">
-                            <i class="fa-solid fa-circle-check text-emerald-400"></i>
-                            <span>Agua 100% limpia y renovada para cada huésped.</span>
+
+                    <div class="mt-6 space-y-2.5 text-xs text-stone-200">
+                        <div class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-circle-check text-emerald-400 mt-0.5"></i>
+                            <span><strong>Agua 100% limpia y renovada</strong> para cada huésped con esencias de eucalipto.</span>
                         </div>
-                        <div class="flex items-center gap-3">
-                            <i class="fa-solid fa-circle-check text-emerald-400"></i>
-                            <span>Sesión nocturna de 2 horas con aromaterapia de eucalipto.</span>
+                        <div class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-circle-check text-emerald-400 mt-0.5"></i>
+                            <span><strong>Sesión nocturna privada</strong> de 2 horas con vista panorámica hacia los cerros.</span>
                         </div>
-                        <div class="flex items-center gap-3">
-                            <i class="fa-solid fa-circle-check text-emerald-400"></i>
-                            <span>Disponibles tanto para huéspedes de cabañas como para visitas por el día.</span>
+                        <div class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-circle-check text-emerald-400 mt-0.5"></i>
+                            <span>Incluida de cortesía en la Cabaña A-Frame Parejas; disponible adicional para cabañas familiares.</span>
                         </div>
                     </div>
-                    <div class="mt-8">
-                        <a href="https://api.whatsapp.com/send?phone=56993262121&text=Hola!%20Quisiera%20consultar%20por%20una%20sesi%C3%B3n%20de%20tinajas%20calientes." target="_blank" 
-                           class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-3 rounded-full text-xs sm:text-sm shadow-lg transition">
-                            <i class="fa-brands fa-whatsapp text-lg"></i> Consultar Disponibilidad de Tinaja
+
+                    <div class="mt-7">
+                        <a href="https://api.whatsapp.com/send?phone=56993262121&text=Hola!%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20el%20servicio%20de%20tinajas%20calientes." target="_blank" 
+                           class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white font-bold px-5 py-3 rounded-xl text-xs sm:text-sm shadow-lg transition">
+                            <i class="fa-brands fa-whatsapp text-base"></i> Consultar Horarios de Tinaja
                         </a>
                     </div>
                 </div>
 
-                <div class="grid grid-cols-2 gap-4">
-                    <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=500&q=80" alt="Spa y tinaja" class="rounded-2xl h-48 w-full object-cover shadow-md">
-                    <img src="https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=500&q=80" alt="Cabaña de noche" class="rounded-2xl h-48 w-full object-cover shadow-md mt-6">
+                <!-- FOTOS REALES: TINAJA CALIENTE AL EXTERIOR + INTERIOR RÚSTICO -->
+                <div class="grid grid-cols-2 gap-3.5">
+                    <div class="relative rounded-2xl overflow-hidden h-52 sm:h-64 shadow-lg border border-stone-700">
+                        <!-- Tinaja caliente con vapor en deck de madera -->
+                        <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=600&q=80" 
+                             alt="Tinaja caliente de madera al exterior con vapor" 
+                             class="w-full h-full object-cover">
+                        <span class="absolute bottom-2 left-2 bg-stone-900/80 backdrop-blur-sm text-[10px] text-white px-2 py-0.5 rounded font-medium">
+                            Tinaja al aire libre
+                        </span>
+                    </div>
+
+                    <div class="relative rounded-2xl overflow-hidden h-52 sm:h-64 shadow-lg border border-stone-700 mt-6">
+                        <!-- Interior acogedor de madera con chimenea -->
+                        <img src="https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?auto=format&fit=crop&w=600&q=80" 
+                             alt="Interior rústico de cabaña con chimenea a leña" 
+                             class="w-full h-full object-cover">
+                        <span class="absolute bottom-2 left-2 bg-stone-900/80 backdrop-blur-sm text-[10px] text-white px-2 py-0.5 rounded font-medium">
+                            Interior acogedor
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- QUÉ HACER ALREDEDOR (ATRACTIVOS LOCALES) -->
-    <section class="max-w-6xl mx-auto px-4 py-16">
-        <div class="text-center mb-10">
-            <span class="text-xs uppercase tracking-widest font-bold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full">
-                Ubicación Estratégica
+    <!-- ATRACTIVOS CERCANOS (UBICACIÓN ESTRATÉGICA) -->
+    <section class="max-w-6xl mx-auto px-4 py-14">
+        <div class="text-center mb-8">
+            <span class="text-[10px] uppercase tracking-widest font-extrabold text-forest-600 bg-emerald-100/60 px-3 py-1 rounded-full">
+                Paseos y Entorno
             </span>
-            <h2 class="text-2xl sm:text-3xl font-serif font-bold text-stone-900 mt-2">Cerca de todo lo mejor de la provincia</h2>
+            <h3 class="text-xl sm:text-3xl font-serif font-bold text-stone-900 mt-2">Cerca de playas, telares y gastronomía</h3>
+            <p class="text-xs text-stone-500 mt-1">Ubicación ideal para recorrer la costa y el valle sin tacos.</p>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
-            <div class="p-6 bg-white rounded-2xl border border-stone-200 shadow-sm">
-                <div class="w-12 h-12 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center mx-auto text-xl mb-3">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div class="p-4 bg-white rounded-2xl border border-stone-200/90 text-center">
+                <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center mx-auto text-base mb-2.5">
                     <i class="fa-solid fa-umbrella-beach"></i>
                 </div>
                 <h4 class="font-bold text-stone-900 text-sm">Playas de Papudo & Zapallar</h4>
-                <p class="text-xs text-stone-500 mt-1">A solo 20 a 25 minutos en auto por ruta pavimentada.</p>
+                <p class="text-[11px] text-stone-500 mt-1">A solo 20 a 25 min en auto por ruta pavimentada.</p>
             </div>
-            <div class="p-6 bg-white rounded-2xl border border-stone-200 shadow-sm">
-                <div class="w-12 h-12 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center mx-auto text-xl mb-3">
+
+            <div class="p-4 bg-white rounded-2xl border border-stone-200/90 text-center">
+                <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center mx-auto text-base mb-2.5">
                     <i class="fa-solid fa-shirt"></i>
                 </div>
                 <h4 class="font-bold text-stone-900 text-sm">Ruta Textil Valle Hermoso</h4>
-                <p class="text-xs text-stone-500 mt-1">A 5 minutos de los talleres tradicionales de chalecos y telares.</p>
+                <p class="text-[11px] text-stone-500 mt-1">A 5 min de las tiendas tradicionales de chalecos de lana.</p>
             </div>
-            <div class="p-6 bg-white rounded-2xl border border-stone-200 shadow-sm">
-                <div class="w-12 h-12 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center mx-auto text-xl mb-3">
+
+            <div class="p-4 bg-white rounded-2xl border border-stone-200/90 text-center">
+                <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center mx-auto text-base mb-2.5">
                     <i class="fa-solid fa-cookie-bite"></i>
                 </div>
-                <h4 class="font-bold text-stone-900 text-sm">Dulces Tradicionales de La Ligua</h4>
-                <p class="text-xs text-stone-500 mt-1">Fábricas históricas de empolvados y chilenitos a 3 minutos.</p>
+                <h4 class="font-bold text-stone-900 text-sm">Dulces Típicos de La Ligua</h4>
+                <p class="text-[11px] text-stone-500 mt-1">Fábricas históricas de chilenitos y empolvados a 5 min.</p>
             </div>
+        </div>
+    </section>
+
+    <!-- PREGUNTAS FRECUENTES (FAQ) -->
+    <section class="max-w-3xl mx-auto px-4 pb-14">
+        <h3 class="text-lg font-serif font-bold text-stone-900 text-center mb-5">Preguntas Frecuentes</h3>
+        <div class="space-y-2 text-xs">
+            <details class="bg-white p-3.5 rounded-2xl border border-stone-200/80 group">
+                <summary class="font-bold text-stone-800 cursor-pointer flex justify-between items-center">
+                    <span>¿Cuáles son los horarios de Check-in y Check-out?</span>
+                    <i class="fa-solid fa-chevron-down text-stone-400 group-open:rotate-180 transition"></i>
+                </summary>
+                <p class="text-stone-500 mt-2 leading-relaxed">El ingreso (Check-in) es desde las 15:00 hrs y la salida (Check-out) hasta las 12:00 hrs para coordinar la limpieza y desinfección.</p>
+            </details>
+
+            <details class="bg-white p-3.5 rounded-2xl border border-stone-200/80 group">
+                <summary class="font-bold text-stone-800 cursor-pointer flex justify-between items-center">
+                    <span>¿Aceptan mascotas?</span>
+                    <i class="fa-solid fa-chevron-down text-stone-400 group-open:rotate-180 transition"></i>
+                </summary>
+                <p class="text-stone-500 mt-2 leading-relaxed">¡Sí! Somos 100% Pet Friendly. Cada cabaña cuenta con patio cercado para que tu perro descanse con tranquilidad.</p>
+            </details>
+
+            <details class="bg-white p-3.5 rounded-2xl border border-stone-200/80 group">
+                <summary class="font-bold text-stone-800 cursor-pointer flex justify-between items-center">
+                    <span>¿Cómo se confirma la reserva?</span>
+                    <i class="fa-solid fa-chevron-down text-stone-400 group-open:rotate-180 transition"></i>
+                </summary>
+                <p class="text-stone-500 mt-2 leading-relaxed">Se solicita el 50% de abono mediante transferencia bancaria para bloquear las fechas y el 50% restante al momento del ingreso.</p>
+            </details>
         </div>
     </section>
 
     <!-- FOOTER -->
-    <footer class="bg-stone-950 text-stone-400 py-10 border-t border-stone-900 text-xs">
+    <footer class="bg-stone-950 text-stone-400 py-8 border-t border-stone-900 text-xs">
         <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
             <div>
-                <p class="text-white font-bold text-sm">Cabañas & Tinajas Alto Valle • La Ligua</p>
+                <p class="text-white font-bold text-sm">Cabañas Alto Valle • La Ligua</p>
                 <p class="text-stone-500 mt-0.5">Camino a Valle Hermoso Km 2.5, Región de Valparaíso.</p>
             </div>
-            <div class="text-stone-500">
+            <div class="text-stone-500 text-[11px]">
                 <p>© 2026 Cabañas Alto Valle. Todos los derechos reservados.</p>
-                <p class="text-[11px] text-emerald-400 mt-1">Sitio web optimizado para reservas directas y móviles por Desarrollador Web Local.</p>
+                <p class="text-emerald-400 mt-0.5">Sitio web diseñado y optimizado para celulares por Desarrollador Web Local.</p>
             </div>
         </div>
     </footer>
 
-    <!-- BOTÓN FLOTANTE WHATSAPP -->
+    <!-- BOTÓN FLOTANTE WHATSAPP (MÓVIL) -->
     <a href="https://api.whatsapp.com/send?phone=56993262121&text=Hola!%20Quisiera%20consultar%20disponibilidad%20de%20caba%C3%B1as%20para%20los%20pr%C3%B3ximos%20d%C3%ADas." target="_blank" 
-       class="fixed bottom-5 right-5 z-40 bg-green-500 hover:bg-green-600 text-white w-14 h-14 rounded-full flex items-center justify-center text-2xl shadow-xl hover:scale-110 transition-all duration-300">
+       class="fixed bottom-4 right-4 z-40 bg-emerald-500 hover:bg-emerald-600 active:scale-90 text-white w-13 h-13 p-3 rounded-full flex items-center justify-center text-2xl shadow-2xl transition">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
     <!-- SCRIPT COTIZADOR -->
     <script>
-        // Fecha de hoy + 1 día para check-in por defecto
         const manana = new Date();
         manana.setDate(manana.getDate() + 1);
-        document.getElementById('cotiz-checkin').value = manana.toISOString().split('T')[0];
+        document.getElementById('cotiz-fecha').value = manana.toISOString().split('T')[0];
 
-        function calcularYEnviar(e) {
+        function cotizarPorWhatsApp(e) {
             e.preventDefault();
-            const tipo = document.getElementById('cotiz-tipo').value;
-            const checkin = document.getElementById('cotiz-checkin').value;
+            const cabana = document.getElementById('cotiz-cabana').value;
+            const fecha = document.getElementById('cotiz-fecha').value;
             const noches = document.getElementById('cotiz-noches').value;
 
             const mensaje = `Hola Cabañas Alto Valle! Estoy cotizando estadía desde su página web:\n\n` +
-                            `• Tipo de cabaña: ${tipo}\n` +
-                            `• Fecha de llegada (Check-in): ${checkin}\n` +
-                            `• Estadía: ${noches}\n\n` +
+                            `• Cabaña: ${cabana}\n` +
+                            `• Fecha de llegada: ${fecha}\n` +
+                            `• Noches: ${noches}\n\n` +
                             `¿Tienen disponibilidad para esas fechas y cuál sería el valor total? ¡Muchas gracias!`;
 
             const url = `https://api.whatsapp.com/send?phone=56993262121&text=${encodeURIComponent(mensaje)}`;
